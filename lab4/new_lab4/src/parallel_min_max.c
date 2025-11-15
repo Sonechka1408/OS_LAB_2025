@@ -1,3 +1,5 @@
+#define _POSIX_C_SOURCE 200809L
+
 #include <ctype.h>
 #include <limits.h>
 #include <signal.h>
@@ -36,7 +38,6 @@ int main(int argc, char **argv) {
   timeout_seconds = 0;
 
   while (true) {
-    int current_optind = optind ? optind : 1;
 
     static struct option options[] = {{"seed", required_argument, 0, 0},
                                       {"array_size", required_argument, 0, 0},
