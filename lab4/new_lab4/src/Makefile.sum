@@ -1,0 +1,26 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c99
+LDFLAGS = -pthread
+
+# Задание 6: parallel_sum
+all: parallel_sum
+
+# Задание 6: parallel_sum с библиотекой sum
+parallel_sum: parallel_sum.o sum.o utils.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o parallel_sum parallel_sum.o sum.o utils.o
+
+parallel_sum.o: parallel_sum.c sum.h utils.h
+	$(CC) $(CFLAGS) -c parallel_sum.c
+
+sum.o: sum.c sum.h
+	$(CC) $(CFLAGS) -c sum.c
+
+utils.o: utils.c utils.h
+	$(CC) $(CFLAGS) -c utils.c
+
+clean:
+	rm -f *.o parallel_sum
+
+.PHONY: all clean
+
+
