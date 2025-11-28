@@ -1,0 +1,19 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c11 -pthread
+TARGET_CLIENT = client
+TARGET_SERVER = server
+SOURCES_CLIENT = client.c common.c
+SOURCES_SERVER = server.c common.c
+
+all: $(TARGET_CLIENT) $(TARGET_SERVER)
+
+$(TARGET_CLIENT): $(SOURCES_CLIENT)
+	$(CC) $(CFLAGS) -o $(TARGET_CLIENT) $(SOURCES_CLIENT)
+
+$(TARGET_SERVER): $(SOURCES_SERVER)
+	$(CC) $(CFLAGS) -o $(TARGET_SERVER) $(SOURCES_SERVER)
+
+clean:
+	rm -f $(TARGET_CLIENT) $(TARGET_SERVER)
+
+.PHONY: all clean
